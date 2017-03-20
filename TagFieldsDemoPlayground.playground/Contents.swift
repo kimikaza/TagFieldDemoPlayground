@@ -10,7 +10,7 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .lightGray
+        view.backgroundColor = UIColor(red:1.00, green:0.63, blue:0.67, alpha:1.0)
         view.translatesAutoresizingMaskIntoConstraints = false
         // Do any additional setup after loading the view, typically from a nib.
         setupTextView()
@@ -28,7 +28,7 @@ class ViewController: UIViewController {
         textView.translatesAutoresizingMaskIntoConstraints = false
         addTextToTextView(textView)
         textView.isScrollEnabled = true
-        textView.backgroundColor = .darkGray
+        textView.backgroundColor = UIColor(red:0.71, green:0.86, blue:0.50, alpha:1.0)
         view.addSubview(textView)
 
         let bottom = NSLayoutConstraint(item: view,
@@ -75,8 +75,10 @@ class ViewController: UIViewController {
         tokens.forEach { (token) in
             let attrText = NSMutableAttributedString(string: token)
             attrText.addAttribute("RoundedBackgroundColorAttribute"/*NSBackgroundColorAttributeName*/,
-                                  value: UIColor.white,
+                                  value: UIColor(red:0.48, green:0.53, blue:0.44, alpha:1),
                                   range: NSRange(location: 0, length: attrText.length))
+            attrText.addAttribute(NSForegroundColorAttributeName,
+                                  value: UIColor(red:1.00, green:1.00, blue:0.65, alpha:1.0), range: NSRange(location: 0, length: attrText.length))
             text.append(delimiter)
             text.append(attrText)
             delimiter = NSMutableAttributedString(string: "    ")
@@ -86,9 +88,10 @@ class ViewController: UIViewController {
                           value: paragraphStyle,
                           range: NSRange(location: 0, length: text.length))
 
-        textView.textContainerInset.top = 10
-        textView.textContainerInset.bottom = 5
-
+        textView.textContainerInset.top = 2
+        textView.textContainerInset.bottom = 1
+        textView.contentInset.left = 5
+        textView.contentInset.right = 5
 
         textView.layer.cornerRadius = 4
 
