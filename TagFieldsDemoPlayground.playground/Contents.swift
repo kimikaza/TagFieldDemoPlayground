@@ -117,6 +117,9 @@ class CustomLayoutManager: NSLayoutManager {
                 }
                 guard let color = (value as? UIColor) else { return }
                 let glRange = glyphRange(forCharacterRange: range, actualCharacterRange: nil);
+                //UInt here is because otherwise playground does not want to execute, although compiler
+                //is actually letting me know that this is wrong. However, this makes the playground work
+                //if it doesn't work for you, try removing UInt wrapping here.
                 guard let tContainer = textContainer(forGlyphAt: UInt(glRange.location),
                                                     effectiveRange: nil) else { return }
                 //draw background rectangle
